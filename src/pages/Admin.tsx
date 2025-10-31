@@ -64,14 +64,12 @@ interface PortfolioContent {
 }
 
 const Admin = () => {
-  // --- THIS IS THE FIX ---
   // We are now correctly destructuring the properties from *your* hook.
   const {
     content, // Was 'data: content'
     loading: isContentLoading, // Was 'isLoading: isContentLoading'
     error: isContentError, // Was 'isError: isContentError'
   } = usePortfolioContent();
-  // --- END OF FIX ---
 
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -165,7 +163,6 @@ const Admin = () => {
   }
 
   // --- Render Loading / Error / Content ---
-  // This logic will now work correctly.
 
   // State 1: Still fetching data
   if (isContentLoading) {
@@ -782,7 +779,7 @@ const AdminResearch = ({
               />
               <p className="text-xs text-muted-foreground">
                 Must be a direct link to an image, not a sharing page.
-              </This>
+              </p> {/* <--- THIS WAS THE BUG. It's fixed now. */}
               {item.posterImage && (
                 <a
                   href={item.posterImage}
