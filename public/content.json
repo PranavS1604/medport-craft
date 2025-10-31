@@ -1,0 +1,85 @@
+{
+  "personal": {
+    "name": "Ritul G. Kale",
+    "title": "Pharmacy Student",
+    "subtitle": "Passionate about Traditional Medicine & Healthcare Innovation",
+    "email": "ritulgkale@example.com",
+    "phone": "+91 XXXXXXXXXX",
+    "location": "Nagpur, Maharashtra",
+    "bio": "Dedicated pharmacy student with hands-on experience in pharmaceutical research, traditional medicine conservation, and clinical practice. Committed to bridging ancient wisdom with modern healthcare."
+  },
+  "education": {
+    "degree": "Bachelor of Pharmacy",
+    "institution": "Dadasaheb Balpande College of Pharmacy",
+    "location": "Near Shree Swami Samarth Dham Mandir, Manewada Road, Besa Square, Nagpur, Maharashtra - 440034",
+    "graduationYear": "Expected 2025",
+    "achievements": [
+      "Research in Traditional Indian Medicine Conservation",
+      "Multiple industry certifications",
+      "Clinical pharmacy training experience"
+    ]
+  },
+  "certifications": [
+    {
+      "title": "Plant/Project Training",
+      "organization": "Callidus Research Laboratories Pvt Ltd",
+      "duration": "29th May 2023 to 19th June 2023",
+      "hours": "150 hours",
+      "location": "Pune, Maharashtra",
+      "description": "Comprehensive training in pharmaceutical research methodologies, plant-based medicine development, and laboratory procedures.",
+      "skills": ["Punctual", "Hardworking", "Inquisitive"]
+    },
+    {
+      "title": "Pharmacy Practice/Training",
+      "organization": "Orbit Multispeciality Hospital",
+      "duration": "22nd July 2024 to 12th August 2024",
+      "hours": "150 hours",
+      "location": "Sunshine Pharmacy, 806 Bhande Plot Square, Sakkardara, Umred Road, Nagpur",
+      "description": "Intensive clinical pharmacy practice focusing on patient care, medication management, and hospital pharmacy operations.",
+      "skills": ["Consistent", "Enthusiastic", "Punctual"]
+    }
+  ],
+  "research": [
+    {
+      "title": "Conservation of Traditional Indian Medicine and Importance of Preservation",
+      "institution": "Dadasaheb Balpande College of Pharmacy, Besa, Nagpur",
+      "coAuthors": ["Riya A. Barole", "Ritul G. Kale"],
+      "year": "2023",
+      "abstract": "Amidst the evolving landscape of healthcare, traditional Indian medicines stand as repositories of ancient wisdom, offering holistic approaches to well-being. This research delves into the critical need for conserving these invaluable medicinal traditions and the profound significance of their preservation.",
+      "highlights": [
+        "Exploration of diverse traditional Indian medicine systems including Ayurveda, Siddha, and Unani",
+        "Analysis of biodiversity loss and climate change impacts on medicinal plants",
+        "Methodology including literature review, biodiversity assessment, and ecological impact analysis",
+        "Emphasis on educational programs and community engagement for preservation"
+      ]
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Pharmaceutical Research",
+      "Clinical Pharmacy Practice",
+      "Traditional Medicine Knowledge",
+      "Laboratory Techniques",
+      "Drug Formulation",
+      "Patient Counseling",
+      "Medication Management"
+    ],
+    "soft": [
+      "Research & Analysis",
+      "Attention to Detail",
+      "Team Collaboration",
+      "Communication",
+      "Time Management",
+      "Problem Solving",
+      "Adaptability"
+    ]
+  },
+  "interests": [
+    "Traditional Indian Medicine Systems",
+    "Pharmaceutical Research & Development",
+    "Biodiversity Conservation",
+    "Patient Care & Counseling",
+    "Herbal Medicine",
+    "Healthcare Innovation"
+  ]
+}
