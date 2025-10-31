@@ -6,7 +6,8 @@
     "email": "ritulgkale@example.com",
     "phone": "+91 8446245184",
     "location": "Nagpur, Maharashtra",
-    "bio": "Dedicated pharmacy student with hands-on experience in pharmaceutical research, traditional medicine conservation, and clinical practice. Committed to bridging ancient wisdom with modern healthcare."
+    "bio": "Dedicated pharmacy student with hands-on experience in pharmaceutical research, traditional medicine conservation, and clinical practice. Committed to bridging ancient wisdom with modern healthcare.",
+    "profilePhoto": "/images/profile-photo.jpg"
   },
   "education": {
     "degree": "Bachelor of Pharmacy",
