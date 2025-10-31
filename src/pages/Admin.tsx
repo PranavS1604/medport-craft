@@ -23,6 +23,7 @@ interface Personal {
   phone: string;
   location: string;
   bio: string;
+  profilePhoto: string; // <-- 1. ADDED HERE
 }
 interface Education {
   degree: string;
@@ -64,11 +65,10 @@ interface PortfolioContent {
 }
 
 const Admin = () => {
-  // We are now correctly destructuring the properties from *your* hook.
   const {
-    content, // Was 'data: content'
-    loading: isContentLoading, // Was 'isLoading: isContentLoading'
-    error: isContentError, // Was 'isError: isContentError'
+    content,
+    loading: isContentLoading,
+    error: isContentError,
   } = usePortfolioContent();
 
   const [password, setPassword] = useState("");
@@ -288,8 +288,6 @@ const Admin = () => {
   );
 };
 
-// --- (All sub-components below this line are unchanged) ---
-
 // --- Sub-Component for Personal Info ---
 const AdminPersonal = ({
   content,
@@ -383,6 +381,31 @@ const AdminPersonal = ({
             rows={5}
           />
         </div>
+        
+        {/* --- 2. ADDED THIS FIELD --- */}
+        <div className="space-y-2">
+          <Label htmlFor="profilePhoto">Profile Photo Link</Label>
+          <Input
+            id="profilePhoto"
+            name="profilePhoto"
+            value={content.personal.profilePhoto}
+            onChange={handleChange}
+          />
+           <p className="text-xs text-muted-foreground">
+            e.g., /images/profile-photo.jpg or a direct Google Drive link
+          </p>
+          {content.personal.profilePhoto && (
+            <a
+              href={content.personal.profilePhoto}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary underline"
+            >
+              View Current Image
+            </a>
+          )}
+        </div>
+
       </CardContent>
     </Card>
   );
@@ -406,7 +429,6 @@ const AdminEducation = ({
     }));
   };
 
-  // Special handler for string arrays like 'achievements'
   const handleArrayChange = (name: string, value: string) => {
     const newArray = value.split("\n"); // Split by new line
     setContent((prev: PortfolioContent) => ({
@@ -642,7 +664,7 @@ const AdminResearch = ({
 }: {
   content: PortfolioContent;
   setContent: Function;
-}) => {
+})=> {
   const handleChange = (
     index: number,
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -779,7 +801,7 @@ const AdminResearch = ({
               />
               <p className="text-xs text-muted-foreground">
                 Must be a direct link to an image, not a sharing page.
-              </p> {/* <--- THIS WAS THE BUG. It's fixed now. */}
+              </p>
               {item.posterImage && (
                 <a
                   href={item.posterImage}
