@@ -9,6 +9,7 @@ interface ResearchItem {
   year: string;
   abstract: string;
   highlights: string[];
+  posterImage?: string;
 }
 
 interface ResearchProps {
@@ -29,10 +30,21 @@ export const Research = ({ research }: ResearchProps) => {
             {research.map((item, index) => (
               <Card 
                 key={index} 
-                className="p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-t-accent animate-fade-in"
+                className="p-8 hover:shadow-2xl transition-all duration-300 border-t-4 border-t-secondary animate-fade-in overflow-hidden"
               >
+                {item.posterImage && (
+                  <div className="mb-6 -mt-4 -mx-4">
+                    <img 
+                      src={item.posterImage} 
+                      alt={`${item.title} research poster`}
+                      className="w-full h-96 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+                      onClick={() => window.open(item.posterImage, '_blank')}
+                    />
+                  </div>
+                )}
+                
                 <div className="flex items-start gap-4 mb-6">
-                  <BookOpen className="w-10 h-10 text-accent flex-shrink-0" />
+                  <BookOpen className="w-10 h-10 text-secondary flex-shrink-0 animate-float" />
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-foreground mb-3">
                       {item.title}

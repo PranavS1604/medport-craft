@@ -10,6 +10,7 @@ interface Certification {
   location: string;
   description: string;
   skills: string[];
+  certificateImage?: string;
 }
 
 interface CertificationsProps {
@@ -30,16 +31,27 @@ export const Certifications = ({ certifications }: CertificationsProps) => {
             {certifications.map((cert, index) => (
               <Card 
                 key={index} 
-                className="p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary animate-fade-in-up"
+                className="p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary animate-fade-in-up group"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
+                {cert.certificateImage && (
+                  <div className="mb-6 -mt-4 -mx-4 overflow-hidden rounded-t-lg">
+                    <img 
+                      src={cert.certificateImage} 
+                      alt={`${cert.title} certificate`}
+                      className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+                      onClick={() => window.open(cert.certificateImage, '_blank')}
+                    />
+                  </div>
+                )}
+                
                 <div className="flex items-start gap-3 mb-4">
-                  <Award className="w-8 h-8 text-primary flex-shrink-0 mt-1" />
+                  <Award className="w-8 h-8 text-primary flex-shrink-0 mt-1 group-hover:animate-pulse" />
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-foreground mb-2">
                       {cert.title}
                     </h3>
-                    <div className="flex items-center gap-2 text-accent font-medium mb-3">
+                    <div className="flex items-center gap-2 text-secondary font-medium mb-3">
                       <Building className="w-4 h-4" />
                       <span>{cert.organization}</span>
                     </div>

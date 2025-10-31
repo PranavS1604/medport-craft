@@ -14,23 +14,39 @@ interface HeroProps {
 
 export const Hero = ({ personal }: HeroProps) => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-secondary/20 to-primary/10">
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/10 molecular-bg">
+      <div className="absolute inset-0 bg-grid-pattern"></div>
+      
+      {/* Floating medical icons */}
+      <div className="absolute top-20 left-10 text-primary/20 float-animation" style={{ animationDelay: '0s' }}>
+        <div className="text-6xl">💊</div>
+      </div>
+      <div className="absolute top-40 right-20 text-secondary/20 float-animation" style={{ animationDelay: '1s' }}>
+        <div className="text-5xl">🧬</div>
+      </div>
+      <div className="absolute bottom-32 left-20 text-accent/20 pill-bounce" style={{ animationDelay: '0.5s' }}>
+        <div className="text-5xl">⚗️</div>
+      </div>
+      <div className="absolute bottom-20 right-10 text-primary/20 heartbeat">
+        <div className="text-6xl">💉</div>
+      </div>
       
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="animate-fade-in-up">
             <div className="inline-block mb-6">
-              <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-primary to-accent p-1 animate-pulse-glow">
-                <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                  <span className="text-5xl font-bold text-primary">
-                    {personal.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+              <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-1 animate-pulse-medical">
+                <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/images/profile-photo.jpg" 
+                    alt={personal.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-fade-in">
               {personal.name}
             </h1>
             

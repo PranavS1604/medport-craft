@@ -27,7 +27,8 @@
       "hours": "150 hours",
       "location": "Pune, Maharashtra",
       "description": "Comprehensive training in pharmaceutical research methodologies, plant-based medicine development, and laboratory procedures.",
-      "skills": ["Punctual", "Hardworking", "Inquisitive"]
+      "skills": ["Punctual", "Hardworking", "Inquisitive"],
+      "certificateImage": "/certificates/callidus-certificate.jpg"
     },
     {
       "title": "Pharmacy Practice/Training",
@@ -36,7 +37,8 @@
       "hours": "150 hours",
       "location": "Sunshine Pharmacy, 806 Bhande Plot Square, Sakkardara, Umred Road, Nagpur",
       "description": "Intensive clinical pharmacy practice focusing on patient care, medication management, and hospital pharmacy operations.",
-      "skills": ["Consistent", "Enthusiastic", "Punctual"]
+      "skills": ["Consistent", "Enthusiastic", "Punctual"],
+      "certificateImage": "/certificates/orbit-hospital-certificate.jpg"
     }
   ],
   "research": [
@@ -51,7 +53,8 @@
         "Analysis of biodiversity loss and climate change impacts on medicinal plants",
         "Methodology including literature review, biodiversity assessment, and ecological impact analysis",
         "Emphasis on educational programs and community engagement for preservation"
-      ]
+      ],
+      "posterImage": "/certificates/research-poster.jpg"
     }
   ],
   "skills": {

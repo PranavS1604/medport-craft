@@ -8,88 +8,88 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 180 20% 98%;
-    --foreground: 195 100% 10%;
+    --background: 240 20% 99%;
+    --foreground: 220 90% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 195 100% 10%;
+    --card-foreground: 220 90% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 195 100% 10%;
+    --popover-foreground: 220 90% 12%;
 
-    --primary: 174 62% 47%;
+    --primary: 210 80% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 53% 79%;
-    --secondary-foreground: 195 100% 10%;
+    --secondary: 280 65% 68%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 180 20% 94%;
-    --muted-foreground: 195 25% 45%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 168 76% 42%;
+    --accent: 340 82% 64%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 180 20% 90%;
-    --input: 180 20% 90%;
-    --ring: 174 62% 47%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 210 80% 56%;
 
     --radius: 0.75rem;
 
-    --medical-teal: 174 62% 47%;
-    --medical-blue: 195 53% 79%;
-    --medical-green: 168 76% 42%;
-    --medical-dark: 195 100% 10%;
+    --medical-blue: 210 80% 56%;
+    --medical-purple: 280 65% 68%;
+    --medical-pink: 340 82% 64%;
+    --medical-dark: 220 90% 12%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 195 100% 10%;
-    --sidebar-primary: 174 62% 47%;
+    --sidebar-background: 240 20% 99%;
+    --sidebar-foreground: 220 90% 12%;
+    --sidebar-primary: 210 80% 56%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 180 20% 94%;
-    --sidebar-accent-foreground: 195 100% 10%;
-    --sidebar-border: 180 20% 90%;
-    --sidebar-ring: 174 62% 47%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 220 90% 12%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 210 80% 56%;
   }
 
   .dark {
-    --background: 195 47% 8%;
-    --foreground: 180 20% 98%;
+    --background: 220 50% 10%;
+    --foreground: 210 40% 98%;
 
-    --card: 195 47% 12%;
-    --card-foreground: 180 20% 98%;
+    --card: 220 45% 14%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 195 47% 12%;
-    --popover-foreground: 180 20% 98%;
+    --popover: 220 45% 14%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 174 62% 47%;
+    --primary: 210 80% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 47% 18%;
-    --secondary-foreground: 180 20% 98%;
+    --secondary: 280 65% 68%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 195 47% 18%;
-    --muted-foreground: 180 10% 70%;
+    --muted: 220 40% 22%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 168 76% 42%;
+    --accent: 340 82% 64%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 50%;
+    --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 195 47% 18%;
-    --input: 195 47% 18%;
-    --ring: 174 62% 47%;
+    --border: 220 40% 22%;
+    --input: 220 40% 22%;
+    --ring: 210 80% 56%;
 
-    --sidebar-background: 195 47% 8%;
-    --sidebar-foreground: 180 20% 98%;
-    --sidebar-primary: 174 62% 47%;
+    --sidebar-background: 220 50% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 80% 56%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 195 47% 18%;
-    --sidebar-accent-foreground: 180 20% 98%;
-    --sidebar-border: 195 47% 18%;
-    --sidebar-ring: 174 62% 47%;
+    --sidebar-accent: 220 40% 22%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 40% 22%;
+    --sidebar-ring: 210 80% 56%;
   }
 }
 
@@ -101,4 +101,65 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Medical/Pharma themed animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-pill {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes dna-helix {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-pill {
+  animation: pulse-pill 2s ease-in-out infinite;
+}
+
+.dna-rotate {
+  animation: dna-helix 20s linear infinite;
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Medical grid background pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, hsl(var(--primary) / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Molecular structure decoration */
+.molecular-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
 }

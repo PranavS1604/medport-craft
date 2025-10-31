@@ -92,9 +92,21 @@ export default {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" }
         },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(45, 212, 191, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(45, 212, 191, 0.6)" }
+        "pulse-medical": {
+          "0%, 100%": { 
+            boxShadow: "0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--secondary) / 0.2)" 
+          },
+          "50%": { 
+            boxShadow: "0 0 40px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--secondary) / 0.4)" 
+          }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" }
+        },
+        "pill-bounce": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-5px) rotate(5deg)" }
         }
       },
       animation: {
@@ -105,7 +117,9 @@ export default {
         "slide-in-left": "slide-in-left 0.6s ease-out",
         "slide-in-right": "slide-in-right 0.6s ease-out",
         "scale-in": "scale-in 0.5s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "pulse-medical": "pulse-medical 2s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite",
+        "pill-bounce": "pill-bounce 2s ease-in-out infinite",
       },
     },
   },
