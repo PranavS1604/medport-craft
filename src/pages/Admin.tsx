@@ -14,7 +14,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
-// Define types for your content (optional but highly recommended)
+// Define types for your content
 interface Personal {
   name: string;
   title: string;
@@ -257,7 +257,9 @@ const AdminPersonal = ({
   content: PortfolioContent;
   setContent: Function;
 }) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setContent((prev: PortfolioContent) => ({
       ...prev,
@@ -353,17 +355,19 @@ const AdminEducation = ({
   content: PortfolioContent;
   setContent: Function;
 }) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setContent((prev: PortfolioContent) => ({
       ...prev,
       education: { ...prev.education, [name]: value },
     }));
   };
-  
+
   // Special handler for string arrays like 'achievements'
   const handleArrayChange = (name: string, value: string) => {
-    const newArray = value.split('\n'); // Split by new line
+    const newArray = value.split("\n"); // Split by new line
     setContent((prev: PortfolioContent) => ({
       ...prev,
       education: { ...prev.education, [name]: newArray },
@@ -372,31 +376,53 @@ const AdminEducation = ({
 
   return (
     <Card>
-      <CardHeader><CardTitle>Education</CardTitle></CardHeader>
+      <CardHeader>
+        <CardTitle>Education</CardTitle>
+      </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="degree">Degree</Label>
-          <Input id="degree" name="degree" value={content.education.degree} onChange={handleChange} />
+          <Input
+            id="degree"
+            name="degree"
+            value={content.education.degree}
+            onChange={handleChange}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="institution">Institution</Label>
-          <Input id="institution" name="institution" value={content.education.institution} onChange={handleChange} />
+          <Input
+            id="institution"
+            name="institution"
+            value={content.education.institution}
+            onChange={handleChange}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="location">Location</Label>
-          <Input id="location" name="location" value={content.education.location} onChange={handleChange} />
+          <Input
+            id="location"
+            name="location"
+            value={content.education.location}
+            onChange={handleChange}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="graduationYear">Graduation Year</Label>
-          <Input id="graduationYear" name="graduationYear" value={content.education.graduationYear} onChange={handleChange} />
+          <Input
+            id="graduationYear"
+            name="graduationYear"
+            value={content.education.graduationYear}
+            onChange={handleChange}
+          />
         </div>
         <div className="space-y-2">
           <Label htmlFor="achievements">Achievements (one per line)</Label>
           <Textarea
             id="achievements"
             name="achievements"
-            value={content.education.achievements.join('\n')}
-            onChange={(e) => handleArrayChange('achievements', e.target.value)}
+            value={content.education.achievements.join("\n")}
+            onChange={(e) => handleArrayChange("achievements", e.target.value)}
             rows={4}
           />
         </div>
@@ -413,19 +439,27 @@ const AdminCertifications = ({
   content: PortfolioContent;
   setContent: Function;
 }) => {
-  
-  const handleCertChange = (index: number, e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleCertChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     const newCerts = [...content.certifications];
     newCerts[index] = { ...newCerts[index], [name]: value };
-    setContent((prev: PortfolioContent) => ({ ...prev, certifications: newCerts }));
+    setContent((prev: PortfolioContent) => ({
+      ...prev,
+      certifications: newCerts,
+    }));
   };
-  
+
   const handleCertSkillsChange = (index: number, value: string) => {
-    const newSkills = value.split(',').map(s => s.trim()); // Split by comma
+    const newSkills = value.split(",").map((s) => s.trim()); // Split by comma
     const newCerts = [...content.certifications];
     newCerts[index] = { ...newCerts[index], skills: newSkills };
-    setContent((prev: PortfolioContent) => ({ ...prev, certifications: newCerts }));
+    setContent((prev: PortfolioContent) => ({
+      ...prev,
+      certifications: newCerts,
+    }));
   };
 
   const addCertification = () => {
@@ -437,7 +471,7 @@ const AdminCertifications = ({
       location: "",
       description: "",
       skills: [],
-      certificateImage: "/certificates/placeholder.jpg",
+      certificateImage: "",
     };
     setContent((prev: PortfolioContent) => ({
       ...prev,
@@ -448,7 +482,10 @@ const AdminCertifications = ({
   const removeCertification = (index: number) => {
     if (confirm("Are you sure you want to delete this certification?")) {
       const newCerts = content.certifications.filter((_, i) => i !== index);
-      setContent((prev: PortfolioContent) => ({ ...prev, certifications: newCerts }));
+      setContent((prev: PortfolioContent) => ({
+        ...prev,
+        certifications: newCerts,
+      }));
     }
   };
 
@@ -461,39 +498,94 @@ const AdminCertifications = ({
         <Card key={index}>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Certification #{index + 1}</CardTitle>
-            <Button variant="ghost" size="icon" onClick={() => removeCertification(index)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => removeCertification(index)}
+            >
               <Trash2 className="w-5 h-5 text-destructive" />
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label>Title</Label>
-              <Input name="title" value={cert.title} onChange={(e) => handleCertChange(index, e)} />
+              <Input
+                name="title"
+                value={cert.title}
+                onChange={(e) => handleCertChange(index, e)}
+              />
             </div>
             <div className="space-y-2">
               <Label>Organization</Label>
-              <Input name="organization" value={cert.organization} onChange={(e) => handleCertChange(index, e)} />
+              <Input
+                name="organization"
+                value={cert.organization}
+                onChange={(e) => handleCertChange(index, e)}
+              />
             </div>
             <div className="space-y-2">
               <Label>Description</Label>
-              <Textarea name="description" value={cert.description} onChange={(e) => handleCertChange(index, e)} />
+              <Textarea
+                name="description"
+                value={cert.description}
+                onChange={(e) => handleCertChange(index, e)}
+              />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2"><Label>Duration</Label><Input name="duration" value={cert.duration} onChange={(e) => handleCertChange(index, e)} /></div>
-              <div className="space-y-2"><Label>Hours</Label><Input name="hours" value={cert.hours} onChange={(e) => handleCertChange(index, e)} /></div>
+              <div className="space-y-2">
+                <Label>Duration</Label>
+                <Input
+                  name="duration"
+                  value={cert.duration}
+                  onChange={(e) => handleCertChange(index, e)}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Hours</Label>
+                <Input
+                  name="hours"
+                  value={cert.hours}
+                  onChange={(e) => handleCertChange(index, e)}
+                />
+              </div>
             </div>
             <div className="space-y-2">
               <Label>Location</Label>
-              <Input name="location" value={cert.location} onChange={(e) => handleCertChange(index, e)} />
+              <Input
+                name="location"
+                value={cert.location}
+                onChange={(e) => handleCertChange(index, e)}
+              />
             </div>
             <div className="space-y-2">
               <Label>Skills (comma-separated)</Label>
-              <Input name="skills" value={cert.skills.join(', ')} onChange={(e) => handleCertSkillsChange(index, e.target.value)} />
+              <Input
+                name="skills"
+                value={cert.skills.join(", ")}
+                onChange={(e) => handleCertSkillsChange(index, e.target.value)}
+              />
             </div>
             <div className="space-y-2">
-              <Label>Certificate Image Path</Label>
-              <Input name="certificateImage" value={cert.certificateImage} onChange={(e) => handleCertChange(index, e)} />
-              <p className="text-xs text-muted-foreground">e.g., /certificates/new-image.jpg</p>
+              <Label>Certificate Image Link</Label>
+              <Input
+                name="certificateImage"
+                value={cert.certificateImage}
+                onChange={(e) => handleCertChange(index, e)}
+                placeholder="Paste direct image link here (e.g., from Google Drive)"
+              />
+              <p className="text-xs text-muted-foreground">
+                Must be a direct link to an image, not a sharing page.
+              </p>
+              {cert.certificateImage && (
+                <a
+                  href={cert.certificateImage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary underline"
+                >
+                  View Current Image
+                </a>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -510,19 +602,31 @@ const AdminResearch = ({
   content: PortfolioContent;
   setContent: Function;
 }) => {
-  
-  const handleChange = (index: number, e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     const newResearch = [...content.research];
     newResearch[index] = { ...newResearch[index], [name]: value };
-    setContent((prev: PortfolioContent) => ({ ...prev, research: newResearch }));
+    setContent((prev: PortfolioContent) => ({
+      ...prev,
+      research: newResearch,
+    }));
   };
-  
-  const handleArrayChange = (index: number, name: 'coAuthors' | 'highlights', value: string) => {
-    const newArray = value.split('\n'); // Split by new line
+
+  const handleArrayChange = (
+    index: number,
+    name: "coAuthors" | "highlights",
+    value: string
+  ) => {
+    const newArray = value.split("\n"); // Split by new line
     const newResearch = [...content.research];
     newResearch[index] = { ...newResearch[index], [name]: newArray };
-    setContent((prev: PortfolioContent) => ({ ...prev, research: newResearch }));
+    setContent((prev: PortfolioContent) => ({
+      ...prev,
+      research: newResearch,
+    }));
   };
 
   const addResearch = () => {
@@ -533,7 +637,7 @@ const AdminResearch = ({
       year: "",
       abstract: "",
       highlights: [],
-      posterImage: "/certificates/placeholder.jpg",
+      posterImage: "",
     };
     setContent((prev: PortfolioContent) => ({
       ...prev,
@@ -544,7 +648,10 @@ const AdminResearch = ({
   const removeResearch = (index: number) => {
     if (confirm("Are you sure you want to delete this research project?")) {
       const newResearch = content.research.filter((_, i) => i !== index);
-      setContent((prev: PortfolioContent) => ({ ...prev, research: newResearch }));
+      setContent((prev: PortfolioContent) => ({
+        ...prev,
+        research: newResearch,
+      }));
     }
   };
 
@@ -557,18 +664,92 @@ const AdminResearch = ({
         <Card key={index}>
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Research #{index + 1}</CardTitle>
-            <Button variant="ghost" size="icon" onClick={() => removeResearch(index)}>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => removeResearch(index)}
+            >
               <Trash2 className="w-5 h-5 text-destructive" />
             </Button>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2"><Label>Title</Label><Input name="title" value={item.title} onChange={(e) => handleChange(index, e)} /></div>
-            <div className="space-y-2"><Label>Institution</Label><Input name="institution" value={item.institution} onChange={(e) => handleChange(index, e)} /></div>
-            <div className="space-y-2"><Label>Year</Label><Input name="year" value={item.year} onChange={(e) => handleChange(index, e)} /></div>
-            <div className="space-y-2"><Label>Abstract</Label><Textarea name="abstract" value={item.abstract} onChange={(e) => handleChange(index, e)} rows={5} /></div>
-            <div className="space-y-2"><Label>Co-Authors (one per line)</Label><Textarea name="coAuthors" value={item.coAuthors.join('\n')} onChange={(e) => handleArrayChange(index, 'coAuthors', e.target.value)} rows={3} /></div>
-            <div className="space-y-2"><Label>Key Highlights (one per line)</Label><Textarea name="highlights" value={item.highlights.join('\n')} onChange={(e) => handleArrayChange(index, 'highlights', e.target.value)} rows={4} /></div>
-            <div className="space-y-2"><Label>Poster Image Path</Label><Input name="posterImage" value={item.posterImage} onChange={(e) => handleChange(index, e)} /><p className="text-xs text-muted-foreground">e.g., /certificates/research-poster.jpg</p></div>
+            <div className="space-y-2">
+              <Label>Title</Label>
+              <Input
+                name="title"
+                value={item.title}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Institution</Label>
+              <Input
+                name="institution"
+                value={item.institution}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Year</Label>
+              <Input
+                name="year"
+                value={item.year}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Abstract</Label>
+              <Textarea
+                name="abstract"
+                value={item.abstract}
+                onChange={(e) => handleChange(index, e)}
+                rows={5}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Co-Authors (one per line)</Label>
+              <Textarea
+                name="coAuthors"
+                value={item.coAuthors.join("\n")}
+                onChange={(e) =>
+                  handleArrayChange(index, "coAuthors", e.target.value)
+                }
+                rows={3}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Key Highlights (one per line)</Label>
+              <Textarea
+                name="highlights"
+                value={item.highlights.join("\n")}
+                onChange={(e) =>
+                  handleArrayChange(index, "highlights", e.target.value)
+                }
+                rows={4}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Poster Image Link</Label>
+              <Input
+                name="posterImage"
+                value={item.posterImage}
+                onChange={(e) => handleChange(index, e)}
+                placeholder="Paste direct image link here (e.g., from Google Drive)"
+              />
+              <p className="text-xs text-muted-foreground">
+                Must be a direct link to an image, not a sharing page.
+              </p>
+              {item.posterImage && (
+                <a
+                  href={item.posterImage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-primary underline"
+                >
+                  View Current Image
+                </a>
+              )}
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -584,8 +765,8 @@ const AdminSkills = ({
   content: PortfolioContent;
   setContent: Function;
 }) => {
-  const handleSkillsChange = (name: 'technical' | 'soft', value: string) => {
-    const newSkills = value.split(',').map(s => s.trim());
+  const handleSkillsChange = (name: "technical" | "soft", value: string) => {
+    const newSkills = value.split(",").map((s) => s.trim());
     setContent((prev: PortfolioContent) => ({
       ...prev,
       skills: { ...prev.skills, [name]: newSkills },
@@ -594,21 +775,23 @@ const AdminSkills = ({
 
   return (
     <Card>
-      <CardHeader><CardTitle>Skills</CardTitle></CardHeader>
+      <CardHeader>
+        <CardTitle>Skills</CardTitle>
+      </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <Label>Technical Skills (comma-separated)</Label>
           <Textarea
-            value={content.skills.technical.join(', ')}
-            onChange={(e) => handleSkillsChange('technical', e.target.value)}
+            value={content.skills.technical.join(", ")}
+            onChange={(e) => handleSkillsChange("technical", e.target.value)}
             rows={4}
           />
         </div>
         <div className="space-y-2">
           <Label>Soft Skills (comma-separated)</Label>
           <Textarea
-            value={content.skills.soft.join(', ')}
-            onChange={(e) => handleSkillsChange('soft', e.target.value)}
+            value={content.skills.soft.join(", ")}
+            onChange={(e) => handleSkillsChange("soft", e.target.value)}
             rows={4}
           />
         </div>
@@ -625,7 +808,7 @@ const AdminInterests = ({
   setContent: Function;
 }) => {
   const handleInterestsChange = (value: string) => {
-    const newInterests = value.split(',').map(s => s.trim());
+    const newInterests = value.split(",").map((s) => s.trim());
     setContent((prev: PortfolioContent) => ({
       ...prev,
       interests: newInterests,
@@ -634,12 +817,14 @@ const AdminInterests = ({
 
   return (
     <Card>
-      <CardHeader><CardTitle>Interests</CardTitle></CardHeader>
+      <CardHeader>
+        <CardTitle>Interests</CardTitle>
+      </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <Label>Interests (comma-separated)</Label>
           <Textarea
-            value={content.interests.join(', ')}
+            value={content.interests.join(", ")}
             onChange={(e) => handleInterestsChange(e.target.value)}
             rows={4}
           />
