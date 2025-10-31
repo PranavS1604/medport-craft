@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { usePortfolioContent } from "@/hooks/usePortfolioContent";
+import { usePortfolioContent } from "@/hooks/usePortfolioContent"; // This is your hook
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,11 +64,18 @@ interface PortfolioContent {
 }
 
 const Admin = () => {
-  const { data: content, isLoading: isContentLoading } = usePortfolioContent();
+  // --- THIS IS THE FIX ---
+  // We are now correctly destructuring the properties from *your* hook.
+  const {
+    content, // Was 'data: content'
+    loading: isContentLoading, // Was 'isLoading: isContentLoading'
+    error: isContentError, // Was 'isError: isContentError'
+  } = usePortfolioContent();
+  // --- END OF FIX ---
+
   const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // This is our new state, holding the editable content object
   const [editableContent, setEditableContent] =
     useState<PortfolioContent | null>(null);
 
@@ -76,10 +83,9 @@ const Admin = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // When content loads, populate our editable state
   useEffect(() => {
     if (content) {
-      setEditableContent(JSON.parse(JSON.stringify(content))); // Deep copy
+      setEditableContent(JSON.parse(JSON.stringify(content)));
     }
   }, [content]);
 
@@ -108,8 +114,8 @@ const Admin = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          password: password, // Send password for backend verification
-          content: editableContent, // Send the whole edited object
+          password: password,
+          content: editableContent,
         }),
       });
 
@@ -158,8 +164,11 @@ const Admin = () => {
     );
   }
 
-  // --- Render Loading or Main Admin Panel ---
-  if (isContentLoading || !editableContent) {
+  // --- Render Loading / Error / Content ---
+  // This logic will now work correctly.
+
+  // State 1: Still fetching data
+  if (isContentLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <Loader2 className="w-12 h-12 animate-spin text-primary" />
@@ -167,6 +176,39 @@ const Admin = () => {
     );
   }
 
+  // State 2: Fetching failed
+  if (isContentError) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Alert variant="destructive" className="max-w-md">
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>Failed to Load Content</AlertTitle>
+          <AlertDescription>
+            Error: "{isContentError}". Could not fetch '/content.json'. Please
+            make sure the file exists in the `/public` folder.
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  // State 3: Data is loaded, but state isn't set yet (or content is empty)
+  if (!editableContent) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Alert variant="destructive" className="max-w-md">
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>No Content Loaded</AlertTitle>
+          <AlertDescription>
+            The content file appears to be empty or invalid. Cannot display
+            the editor.
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  // State 4: Success! Render the panel.
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="flex justify-between items-center mb-8">
@@ -248,6 +290,8 @@ const Admin = () => {
     </div>
   );
 };
+
+// --- (All sub-components below this line are unchanged) ---
 
 // --- Sub-Component for Personal Info ---
 const AdminPersonal = ({
@@ -738,7 +782,7 @@ const AdminResearch = ({
               />
               <p className="text-xs text-muted-foreground">
                 Must be a direct link to an image, not a sharing page.
-              </p>
+              </This>
               {item.posterImage && (
                 <a
                   href={item.posterImage}
