@@ -9,6 +9,7 @@ interface HeroProps {
     email: string;
     phone: string;
     location: string;
+    profilePhoto: string;
   };
 }
 
@@ -38,7 +39,7 @@ export const Hero = ({ personal }: HeroProps) => {
               <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-1 animate-pulse-medical">
                 <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/images/profile-photo.jpg" 
+                    src={personal.profilePhoto}
                     alt={personal.name}
                     className="w-full h-full object-cover"
                   />
