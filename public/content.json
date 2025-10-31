@@ -4,7 +4,7 @@
     "title": "Pharmacy Student",
     "subtitle": "Passionate about Traditional Medicine & Healthcare Innovation",
     "email": "ritulgkale@example.com",
-    "phone": "+91 XXXXXXXXXX",
+    "phone": "+91 8446245184",
     "location": "Nagpur, Maharashtra",
     "bio": "Dedicated pharmacy student with hands-on experience in pharmaceutical research, traditional medicine conservation, and clinical practice. Committed to bridging ancient wisdom with modern healthcare."
   },
@@ -12,7 +12,7 @@
     "degree": "Bachelor of Pharmacy",
     "institution": "Dadasaheb Balpande College of Pharmacy",
     "location": "Near Shree Swami Samarth Dham Mandir, Manewada Road, Besa Square, Nagpur, Maharashtra - 440034",
-    "graduationYear": "Expected 2025",
+    "graduationYear": "2025",
     "achievements": [
       "Research in Traditional Indian Medicine Conservation",
       "Multiple industry certifications",
@@ -27,7 +27,11 @@
       "hours": "150 hours",
       "location": "Pune, Maharashtra",
       "description": "Comprehensive training in pharmaceutical research methodologies, plant-based medicine development, and laboratory procedures.",
-      "skills": ["Punctual", "Hardworking", "Inquisitive"],
+      "skills": [
+        "Punctual",
+        "Hardworking",
+        "Inquisitive"
+      ],
       "certificateImage": "/certificates/callidus-certificate.jpg"
     },
     {
@@ -37,7 +41,11 @@
       "hours": "150 hours",
       "location": "Sunshine Pharmacy, 806 Bhande Plot Square, Sakkardara, Umred Road, Nagpur",
       "description": "Intensive clinical pharmacy practice focusing on patient care, medication management, and hospital pharmacy operations.",
-      "skills": ["Consistent", "Enthusiastic", "Punctual"],
+      "skills": [
+        "Consistent",
+        "Enthusiastic",
+        "Punctual"
+      ],
       "certificateImage": "/certificates/orbit-hospital-certificate.jpg"
     }
   ],
@@ -45,7 +53,10 @@
     {
       "title": "Conservation of Traditional Indian Medicine and Importance of Preservation",
       "institution": "Dadasaheb Balpande College of Pharmacy, Besa, Nagpur",
-      "coAuthors": ["Riya A. Barole", "Ritul G. Kale"],
+      "coAuthors": [
+        "Riya A. Barole",
+        "Ritul G. Kale"
+      ],
       "year": "2023",
       "abstract": "Amidst the evolving landscape of healthcare, traditional Indian medicines stand as repositories of ancient wisdom, offering holistic approaches to well-being. This research delves into the critical need for conserving these invaluable medicinal traditions and the profound significance of their preservation.",
       "highlights": [
