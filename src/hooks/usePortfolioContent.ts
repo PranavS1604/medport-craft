@@ -9,6 +9,7 @@ export interface PortfolioContent {
     phone: string;
     location: string;
     bio: string;
+    profilePhoto: string;
   };
   education: {
     degree: string;
