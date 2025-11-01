@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Download } from "lucide-react"; // 1. Import Download icon
 import { Button } from "./ui/button";
 
 interface HeroProps {
@@ -10,6 +10,7 @@ interface HeroProps {
     phone: string;
     location: string;
     profilePhoto: string;
+    resumeUrl: string; // 2. Add resumeUrl to the interface
   };
 }
 
@@ -18,7 +19,7 @@ export const Hero = ({ personal }: HeroProps) => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-primary/5 to-secondary/10 molecular-bg">
       <div className="absolute inset-0 bg-grid-pattern"></div>
       
-      {/* Floating medical icons */}
+      {/* (Floating medical icons... no change) */}
       <div className="absolute top-20 left-10 text-primary/20 float-animation" style={{ animationDelay: '0s' }}>
         <div className="text-6xl">💊</div>
       </div>
@@ -39,7 +40,7 @@ export const Hero = ({ personal }: HeroProps) => {
               <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-br from-primary via-secondary to-accent p-1 animate-pulse-medical">
                 <div className="w-full h-full rounded-full bg-card flex items-center justify-center overflow-hidden">
                   <img 
-                    src={personal.profilePhoto}
+                    src={personal.profilePhoto} 
                     alt={personal.name}
                     className="w-full h-full object-cover"
                   />
@@ -78,6 +79,21 @@ export const Hero = ({ personal }: HeroProps) => {
               <Button size="lg" className="bg-primary hover:bg-primary/90">
                 <a href="#contact">Get in Touch</a>
               </Button>
+              
+              {/* --- 3. THIS IS THE NEW BUTTON --- */}
+              <Button size="lg" variant="outline">
+                <a 
+                  href={personal.resumeUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </a>
+              </Button>
+              {/* --- END OF NEW BUTTON --- */}
+              
               <Button size="lg" variant="outline">
                 <a href="#research">View Research</a>
               </Button>
