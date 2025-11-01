@@ -13,13 +13,31 @@
   "education": [
     {
       "degree": "Bachelor of Pharmacy",
-      "institution": "Dadasaheb Balpande College of Pharmacy",
+      "institution": "Dadasaheb Balpande College of Pharmacy, Nagpur",
       "location": "Near Shree Swami Samarth Dham Mandir, Manewada Road, Besa Square, Nagpur, Maharashtra - 440034",
-      "graduationYear": "Expected - 2025",
+      "graduationYear": "2024",
       "achievements": [
+        "Industrial training experience with certification",
         "Research in Traditional Indian Medicine Conservation",
-        "Multiple industry certifications",
         "Clinical pharmacy training experience"
+      ]
+    },
+    {
+      "degree": "HSC",
+      "institution": "St. Paul Jr. College, Nagpur",
+      "location": "Nagpur, Maharashtra, India",
+      "graduationYear": "2020",
+      "achievements": [
+        "Scored - 83.08%"
+      ]
+    },
+    {
+      "degree": "SSC",
+      "institution": "St. Peters School, Bela, Bhandara",
+      "location": "Bela, Bhandara, Maharashtra, India",
+      "graduationYear": "2018",
+      "achievements": [
+        "Scored - 83.80%"
       ]
     }
   ],
