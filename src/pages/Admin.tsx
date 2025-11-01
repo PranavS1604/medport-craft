@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { usePortfolioContent } from "@/hooks/usePortfolioContent"; // This is your hook
+import { usePortfolioContent } from "@/hooks/usePortfolioContent";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +14,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
-// Define types for your content
+// --- 1. UPDATED INTERFACES ---
 interface Personal {
   name: string;
   title: string;
@@ -23,7 +23,7 @@ interface Personal {
   phone: string;
   location: string;
   bio: string;
-  profilePhoto: string; // <-- 1. ADDED HERE
+  profilePhoto: string;
 }
 interface Education {
   degree: string;
@@ -57,12 +57,13 @@ interface Skills {
 }
 interface PortfolioContent {
   personal: Personal;
-  education: Education;
+  education: Education[]; // <-- CHANGED
   certifications: Certification[];
   research: Research[];
   skills: Skills;
   interests: string[];
 }
+// --- END OF INTERFACE UPDATES ---
 
 const Admin = () => {
   const {
@@ -164,7 +165,6 @@ const Admin = () => {
 
   // --- Render Loading / Error / Content ---
 
-  // State 1: Still fetching data
   if (isContentLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -173,7 +173,6 @@ const Admin = () => {
     );
   }
 
-  // State 2: Fetching failed
   if (isContentError) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -189,7 +188,6 @@ const Admin = () => {
     );
   }
 
-  // State 3: Data is loaded, but state isn't set yet (or content is empty)
   if (!editableContent) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -254,6 +252,7 @@ const Admin = () => {
           />
         </TabsContent>
         <TabsContent value="education">
+          {/* --- This component is now updated --- */}
           <AdminEducation
             content={editableContent}
             setContent={setEditableContent}
@@ -289,6 +288,7 @@ const Admin = () => {
 };
 
 // --- Sub-Component for Personal Info ---
+// (This component is unchanged, but included for completeness)
 const AdminPersonal = ({
   content,
   setContent,
@@ -381,8 +381,6 @@ const AdminPersonal = ({
             rows={5}
           />
         </div>
-        
-        {/* --- 2. ADDED THIS FIELD --- */}
         <div className="space-y-2">
           <Label htmlFor="profilePhoto">Profile Photo Link</Label>
           <Input
@@ -405,13 +403,13 @@ const AdminPersonal = ({
             </a>
           )}
         </div>
-
       </CardContent>
     </Card>
   );
 };
 
-// --- Sub-Component for Education ---
+
+// --- *** 3. COMPLETELY NEW AdminEducation Component *** ---
 const AdminEducation = ({
   content,
   setContent,
@@ -420,81 +418,124 @@ const AdminEducation = ({
   setContent: Function;
 }) => {
   const handleChange = (
+    index: number,
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    const newEducation = [...content.education];
+    newEducation[index] = { ...newEducation[index], [name]: value };
     setContent((prev: PortfolioContent) => ({
       ...prev,
-      education: { ...prev.education, [name]: value },
+      education: newEducation,
     }));
   };
 
-  const handleArrayChange = (name: string, value: string) => {
+  const handleArrayChange = (index: number, name: "achievements", value: string) => {
     const newArray = value.split("\n"); // Split by new line
+    const newEducation = [...content.education];
+    newEducation[index] = { ...newEducation[index], [name]: newArray };
     setContent((prev: PortfolioContent) => ({
       ...prev,
-      education: { ...prev.education, [name]: newArray },
+      education: newEducation,
     }));
+  };
+
+  const addEducation = () => {
+    const newEdu: Education = {
+      degree: "New Degree",
+      institution: "",
+      location: "",
+      graduationYear: "",
+      achievements: [],
+    };
+    setContent((prev: PortfolioContent) => ({
+      ...prev,
+      education: [...prev.education, newEdu],
+    }));
+  };
+
+  const removeEducation = (index: number) => {
+    if (confirm("Are you sure you want to delete this education entry?")) {
+      const newEducation = content.education.filter((_, i) => i !== index);
+      setContent((prev: PortfolioContent) => ({
+        ...prev,
+        education: newEducation,
+      }));
+    }
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Education</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="degree">Degree</Label>
-          <Input
-            id="degree"
-            name="degree"
-            value={content.education.degree}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="institution">Institution</Label>
-          <Input
-            id="institution"
-            name="institution"
-            value={content.education.institution}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="location">Location</Label>
-          <Input
-            id="location"
-            name="location"
-            value={content.education.location}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="graduationYear">Graduation Year</Label>
-          <Input
-            id="graduationYear"
-            name="graduationYear"
-            value={content.education.graduationYear}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="achievements">Achievements (one per line)</Label>
-          <Textarea
-            id="achievements"
-            name="achievements"
-            value={content.education.achievements.join("\n")}
-            onChange={(e) => handleArrayChange("achievements", e.target.value)}
-            rows={4}
-          />
-        </div>
-      </CardContent>
-    </Card>
+    <div className="space-y-6">
+      <Button onClick={addEducation} variant="outline" className="gap-2">
+        <PlusCircle className="w-4 h-4" /> Add New Education
+      </Button>
+      {content.education.map((edu, index) => (
+        <Card key={index}>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Education #{index + 1}</CardTitle>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => removeEducation(index)}
+            >
+              <Trash2 className="w-5 h-5 text-destructive" />
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label>Degree</Label>
+              <Input
+                name="degree"
+                value={edu.degree}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Institution</Label>
+              <Input
+                name="institution"
+                value={edu.institution}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Location</Label>
+              <Input
+                name="location"
+                value={edu.location}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Graduation Year</Label>
+              <Input
+                name="graduationYear"
+                value={edu.graduationYear}
+                onChange={(e) => handleChange(index, e)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Achievements (one per line)</Label>
+              <Textarea
+                name="achievements"
+                value={edu.achievements.join("\n")}
+                onChange={(e) =>
+                  handleArrayChange(index, "achievements", e.target.value)
+                }
+                rows={4}
+              />
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
   );
 };
+// --- END OF NEW COMPONENT ---
+
 
 // --- Sub-Component for Certifications (Array) ---
+// (This component is unchanged)
 const AdminCertifications = ({
   content,
   setContent,
@@ -658,6 +699,7 @@ const AdminCertifications = ({
 };
 
 // --- Sub-Component for Research (Array) ---
+// (This component is unchanged)
 const AdminResearch = ({
   content,
   setContent,
@@ -821,6 +863,7 @@ const AdminResearch = ({
 };
 
 // --- Sub-Component for Skills & Interests ---
+// (This component is unchanged)
 const AdminSkills = ({
   content,
   setContent,
@@ -863,6 +906,8 @@ const AdminSkills = ({
   );
 };
 
+// --- Sub-Component for Interests ---
+// (This component is unchanged)
 const AdminInterests = ({
   content,
   setContent,
