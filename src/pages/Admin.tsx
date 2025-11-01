@@ -24,6 +24,7 @@ interface Personal {
   location: string;
   bio: string;
   profilePhoto: string;
+  resumeUrl: string; // <-- ADDED
 }
 interface Education {
   degree: string;
@@ -57,7 +58,7 @@ interface Skills {
 }
 interface PortfolioContent {
   personal: Personal;
-  education: Education[]; // <-- CHANGED
+  education: Education[];
   certifications: Certification[];
   research: Research[];
   skills: Skills;
@@ -164,7 +165,6 @@ const Admin = () => {
   }
 
   // --- Render Loading / Error / Content ---
-
   if (isContentLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -252,7 +252,6 @@ const Admin = () => {
           />
         </TabsContent>
         <TabsContent value="education">
-          {/* --- This component is now updated --- */}
           <AdminEducation
             content={editableContent}
             setContent={setEditableContent}
@@ -288,7 +287,6 @@ const Admin = () => {
 };
 
 // --- Sub-Component for Personal Info ---
-// (This component is unchanged, but included for completeness)
 const AdminPersonal = ({
   content,
   setContent,
@@ -312,6 +310,7 @@ const AdminPersonal = ({
         <CardTitle>Personal & Contact Info</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* (All other fields... name, title, bio, etc) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
@@ -390,7 +389,7 @@ const AdminPersonal = ({
             onChange={handleChange}
           />
            <p className="text-xs text-muted-foreground">
-            e.g., /images/profile-photo.jpg or a direct Google Drive link
+            e.g., /images/profile-photo.jpg or a direct link
           </p>
           {content.personal.profilePhoto && (
             <a
@@ -403,13 +402,40 @@ const AdminPersonal = ({
             </a>
           )}
         </div>
+        
+        {/* --- 2. ADDED THIS FIELD --- */}
+        <div className="space-y-2">
+          <Label htmlFor="resumeUrl">Resume/CV Path</Label>
+          <Input
+            id="resumeUrl"
+            name="resumeUrl"
+            value={content.personal.resumeUrl}
+            onChange={handleChange}
+            placeholder="e.g., /resume.pdf"
+          />
+           <p className="text-xs text-muted-foreground">
+            File must be uploaded to the /public folder on GitHub.
+          </p>
+          {content.personal.resumeUrl && (
+            <a
+              href={content.personal.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary underline"
+            >
+              View Current Resume
+            </a>
+          )}
+        </div>
+        {/* --- END OF ADDED FIELD --- */}
+
       </CardContent>
     </Card>
   );
 };
 
 
-// --- *** 3. COMPLETELY NEW AdminEducation Component *** ---
+// --- Sub-Component for Education ---
 const AdminEducation = ({
   content,
   setContent,
@@ -531,11 +557,9 @@ const AdminEducation = ({
     </div>
   );
 };
-// --- END OF NEW COMPONENT ---
 
 
 // --- Sub-Component for Certifications (Array) ---
-// (This component is unchanged)
 const AdminCertifications = ({
   content,
   setContent,
@@ -699,7 +723,6 @@ const AdminCertifications = ({
 };
 
 // --- Sub-Component for Research (Array) ---
-// (This component is unchanged)
 const AdminResearch = ({
   content,
   setContent,
@@ -863,7 +886,6 @@ const AdminResearch = ({
 };
 
 // --- Sub-Component for Skills & Interests ---
-// (This component is unchanged)
 const AdminSkills = ({
   content,
   setContent,
@@ -906,8 +928,6 @@ const AdminSkills = ({
   );
 };
 
-// --- Sub-Component for Interests ---
-// (This component is unchanged)
 const AdminInterests = ({
   content,
   setContent,
