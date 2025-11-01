@@ -9,7 +9,8 @@
     "bio": "Dedicated pharmacy student with hands-on experience in pharmaceutical research, traditional medicine conservation, and clinical practice. Committed to bridging ancient wisdom with modern healthcare.",
     "profilePhoto": "https://res.cloudinary.com/dlttd3zuh/image/upload/v1761970538/1753250020871_spjpty.jpg"
   },
-  "education": {
+  "education": [
+    {
     "degree": "Bachelor of Pharmacy",
     "institution": "Dadasaheb Balpande College of Pharmacy",
     "location": "Near Shree Swami Samarth Dham Mandir, Manewada Road, Besa Square, Nagpur, Maharashtra - 440034",
@@ -17,9 +18,9 @@
     "achievements": [
       "Research in Traditional Indian Medicine Conservation",
       "Multiple industry certifications",
-      "Clinical pharmacy training experience"
-    ]
-  },
+      "Clinical pharmacy training experience"]
+    }
+  ],
   "certifications": [
     {
       "title": "Plant/Project Training",
