@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react';
+export interface Education {
+  degree: string;
+  institution: string;
+  location: string;
+  graduationYear: string;
+  achievements: string[];
+}
 
 export interface PortfolioContent {
   personal: {
@@ -11,13 +18,7 @@ export interface PortfolioContent {
     bio: string;
     profilePhoto: string;
   };
-  education: {
-    degree: string;
-    institution: string;
-    location: string;
-    graduationYear: string;
-    achievements: string[];
-  };
+  education: Education[];
   certifications: Array<{
     title: string;
     organization: string;
