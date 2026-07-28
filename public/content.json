@@ -1,16 +1,25 @@
 {
   "personal": {
-    "name": "Ritul G. Kale",
-    "title": "Aspiring Pharmacist",
-    "subtitle": "Exploring the world of pharmacy and passionate about the healthcare services.",
+    "name": "Ritul Ganesh Kale",
+    "title": "Research Scholar 👩🏻‍🔬🧪",
+    "subtitle": "🧬 Exploring pharmaceutical sciences | 🔬 Research Enthusiast | 💊 Healthcare Innovation",
     "email": "kritul2002@gmail.com",
     "phone": "+91 8446245184",
     "location": "Maharashtra, India",
-    "bio": "I am currently pursuing my Master of Pharmacy (M. Pharm) in Pharmaceutics at the University Department of Chemical Technology, Dr. Babasaheb Ambedkar Marathwada University, Aurangabad.\n\nI completed my Bachelor of Pharmacy (B.Pharm) with a CGPA of 8.28 from Dadasaheb Balpande College of Pharmacy, Nagpur. My academic journey has helped me build a strong foundation in pharmaceutical sciences and develop a passion for bridging the gap between theoretical knowledge and practical application in the healthcare and pharmaceutical sectors.\n\nDriven by curiosity and a commitment to continuous learning, I aim to contribute meaningfully to research, formulation development, and clinical practice, creating real-world impact in patient care and drug innovation. \n\nLet’s connect—I look forward to collaborating with professionals in pharma and healthcare to create impactful solutions.",
-    "profilePhoto": "https://res.cloudinary.com/dlttd3zuh/image/upload/v1761970538/1753250020871_spjpty.jpg",
+    "bio": "I am currently pursuing my Master of Pharmacy (M.Pharm) in Pharmaceutics (1st Sem - 9.23 sgpa) at the University Department of Chemical Technology, Dr. Babasaheb Ambedkar Marathwada University, Aurangabad.\n\nI completed my Bachelor of Pharmacy (B.Pharm) with a CGPA of 8.28 from Dadasaheb Balpande College of Pharmacy, Nagpur. My academic journey has helped me build a strong foundation in pharmaceutical sciences and develop a passion for bridging the gap between theoretical knowledge and practical application in the healthcare and pharmaceutical sectors.\n\nDriven by curiosity and a commitment to continuous learning, I aim to contribute meaningfully to research, formulation development, and clinical practice, creating real-world impact in patient care and drug innovation. \n\nLet’s connect—I look forward to collaborating with professionals in pharma and healthcare to create impactful solutions.",
+    "profilePhoto": "https://instasize.com/p/cf40c1e90c8e64925191e95c2f7822eafb7953e4c2a8d8589f947c746584e4ac",
     "resumeUrl": "https://drive.google.com/file/d/10nQdk2bhVVkf3FLw0Lly_M7DsfGIF4It/view?usp=sharing"
   },
   "education": [
+    {
+      "degree": "Master of Pharmacy (Pharmaceutics)",
+      "institution": "University Department of Chemical Technology, DR. BAMU",
+      "location": "Chhatrapati Sambhajinagar ",
+      "graduationYear": "2027",
+      "achievements": [
+        "1st sem - sgpa 9.23"
+      ]
+    },
     {
       "degree": "Bachelor of Pharmacy",
       "institution": "Dadasaheb Balpande College of Pharmacy, Nagpur",
@@ -70,6 +79,16 @@
         "Punctual"
       ],
       "certificateImage": "/certificates/orbit-hospital-certificate.jpg"
+    },
+    {
+      "title": "New Certification",
+      "organization": "",
+      "duration": "",
+      "hours": "",
+      "location": "",
+      "description": "",
+      "skills": [],
+      "certificateImage": ""
     }
   ],
   "research": [
